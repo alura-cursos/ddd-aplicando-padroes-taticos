@@ -1,11 +1,12 @@
+import { CartItem } from './cart-item';
+import { CartId } from './value-objects/cart-id';
+import { CustomerId } from './value-objects/customer-id';
+
 interface ShoppingCart {
-  cartId: string;
-  customerId: string;
+  cartId: CartId;
+  customerId: CustomerId;
   status: string;
-  items: Array<{
-    productId: string;
-    quantity: number;
-  }>;
+  items: CartItem[];
 
   create: () => void;
   addItem: () => void;
