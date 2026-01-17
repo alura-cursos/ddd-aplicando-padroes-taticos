@@ -89,8 +89,8 @@ describe('ShoppingCart', () => {
 
         const items = cart.getItems();
         expect(items).toHaveLength(1);
-        expect(items[0].productId.value).toEqual(productId.getValue());
-        expect(items[0].quantity.value).toBe(quantity.getValue());
+        expect(items[0].productId).toEqual(productId.getValue());
+        expect(items[0].quantity).toBe(quantity.getValue());
         expect(cart.getItemCount()).toBe(1);
       });
 
@@ -103,7 +103,7 @@ describe('ShoppingCart', () => {
 
         const items = cart.getItems();
         expect(items).toHaveLength(1);
-        expect(items[0].quantity.value).toBe(7);
+        expect(items[0].quantity).toBe(7);
       });
 
       it('should create separate line for different product', () => {

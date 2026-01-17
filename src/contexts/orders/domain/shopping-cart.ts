@@ -1,4 +1,4 @@
-import { CartItem } from './cart-item';
+import { CartItem, CartItemJSON } from './cart-item';
 import { CartId } from './value-objects/cart-id';
 import { CartStatus } from './value-objects/cart-status';
 import { CustomerId } from './value-objects/customer-id';
@@ -87,8 +87,8 @@ export class ShoppingCart {
     );
   }
 
-  getItems(): CartItem[] {
-    return structuredClone(this.items);
+  getItems(): CartItemJSON[] {
+    return this.items.map((item) => item.toJSON());
   }
 
   getItemCount(): number {
