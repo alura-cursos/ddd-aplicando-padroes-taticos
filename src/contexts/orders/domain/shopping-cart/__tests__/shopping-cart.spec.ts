@@ -89,8 +89,8 @@ describe('ShoppingCart', () => {
 
         const items = cart.getItems();
         expect(items).toHaveLength(1);
-        expect(items[0].productId).toEqual(productId.getValue());
-        expect(items[0].quantity).toBe(quantity.getValue());
+        expect(items[0].getProductId()).toEqual(productId);
+        expect(items[0].getQuantity()).toBe(quantity);
         expect(cart.getItemCount()).toBe(1);
       });
 
@@ -103,7 +103,7 @@ describe('ShoppingCart', () => {
 
         const items = cart.getItems();
         expect(items).toHaveLength(1);
-        expect(items[0].quantity).toBe(7);
+        expect(items[0].getQuantity().getValue()).toBe(7);
       });
 
       it('should create separate line for different product', () => {
@@ -143,17 +143,15 @@ describe('ShoppingCart', () => {
     });
 
     describe('getItems', () => {
-      it('should return defensive copy as array', () => {
+      it('should return an array', () => {
         const cart = ShoppingCart.create(CustomerId.fromString('customer-1'));
         cart.addItem(ProductId.fromString('product-1'), Quantity.of(3));
 
-        const items1 = cart.getItems();
-        const items2 = cart.getItems();
+        const items = cart.getItems();
 
-        // Should be different array instances (defensive copy)
-        expect(items1).not.toBe(items2);
-        expect(items1).toHaveLength(1);
-        expect(items2).toHaveLength(1);
+        expect(items).toEqual([
+          CartItem.create(ProductId.fromString('product-1'), Quantity.of(3)),
+        ]);
       });
     });
 

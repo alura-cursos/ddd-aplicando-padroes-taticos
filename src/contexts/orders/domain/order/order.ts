@@ -37,7 +37,7 @@ export class Order {
   readonly customerId: CustomerId;
   readonly items: OrderItem[];
   readonly shippingAddress: ShippingAddress;
-  readonly globalDiscount: Money;
+  globalDiscount: Money;
   status: OrderStatus;
   paymentId: string | null;
 
@@ -73,6 +73,14 @@ export class Order {
     });
 
     return order;
+  }
+
+  applyGlobalDiscount(globalDiscount: Money): void {
+    if (this.status.isPaid()) {
+      throw new Error('Cannot apply global discount to paid order');
+    }
+    this.globalDiscount = globalDiscount;
+    this.validate();
   }
 
   markAsPaid(paymentId: string): void {

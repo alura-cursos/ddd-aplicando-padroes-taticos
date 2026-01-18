@@ -58,7 +58,9 @@ export class CartService {
   }
 
   private mapToDto(cart: ShoppingCart): CartResponseDto {
-    const items: CartItemResponseDto[] = cart.getItems();
+    const items: CartItemResponseDto[] = cart
+      .getItems()
+      .map((item) => item.toJSON());
     return {
       cartId: cart.getCartId().getValue(),
       customerId: cart.getCustomerId().getValue(),

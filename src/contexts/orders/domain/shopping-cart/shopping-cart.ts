@@ -2,7 +2,7 @@ import { CustomerId } from '../shared/customer-id';
 import { ProductId } from '../shared/product-id';
 import { Quantity } from '../shared/quantity';
 import { CartId } from './cart-id';
-import { CartItem, CartItemJSON } from './cart-item';
+import { CartItem } from './cart-item';
 import { CartStatus } from './cart-status';
 
 type ShoppingCartParams = {
@@ -87,8 +87,8 @@ export class ShoppingCart {
     );
   }
 
-  getItems(): CartItemJSON[] {
-    return this.items.map((item) => item.toJSON());
+  getItems(): CartItem[] {
+    return this.items;
   }
 
   getItemCount(): number {
