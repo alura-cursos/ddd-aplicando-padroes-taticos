@@ -1,5 +1,5 @@
+import { Money } from '../../../../shared/money';
 import { CustomerId } from '../../shared/customer-id';
-import { Money } from '../../shared/money';
 import { ProductId } from '../../shared/product-id';
 import { Quantity } from '../../shared/quantity';
 import { CartId } from '../../shopping-cart/cart-id';

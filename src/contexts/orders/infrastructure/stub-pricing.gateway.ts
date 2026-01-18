@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { Money } from '../../shared/money';
 import { PricingGateway } from '../domain/order/pricing.gateway';
 import { CustomerId } from '../domain/shared/customer-id';
-import { Money } from '../domain/shared/money';
 import { ProductId } from '../domain/shared/product-id';
 import { Quantity } from '../domain/shared/quantity';
 

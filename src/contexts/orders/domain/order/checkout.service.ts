@@ -1,4 +1,4 @@
-import { Money } from '../shared/money';
+import { Money } from '../../../shared/money';
 import { ShoppingCart } from '../shopping-cart/shopping-cart';
 import { Order } from './order';
 import { PricingGateway } from './pricing.gateway';
