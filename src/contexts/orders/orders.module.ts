@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { DOMAIN_EVENT_PUBLISHER } from '../shared/events/domain-event.publisher';
 import { CartService } from './application/cart.service';
 import { OrderService } from './application/order.service';
 import { CheckoutService } from './domain/order/checkout.service';
@@ -7,6 +8,7 @@ import { CartController } from './infrastructure/controllers/cart.controller';
 import { OrdersController } from './infrastructure/controllers/orders.controller';
 import { InMemoryOrderRepository } from './infrastructure/database/in-memory-order.repository';
 import { InMemoryShoppingCartRepository } from './infrastructure/database/in-memory-shopping-cart.repository';
+import { OrdersEventPublisher } from './infrastructure/orders-event-publisher';
 import { StubPricingGateway } from './infrastructure/stub-pricing.gateway';
 import {
   ORDER_REPOSITORY,
@@ -30,6 +32,10 @@ import {
     {
       provide: PRICING_GATEWAY,
       useClass: StubPricingGateway,
+    },
+    {
+      provide: DOMAIN_EVENT_PUBLISHER,
+      useClass: OrdersEventPublisher,
     },
     {
       provide: CheckoutService,

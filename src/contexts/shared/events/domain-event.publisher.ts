@@ -9,3 +9,5 @@ import { DomainEvent } from './domain-event';
 export interface DomainEventPublisher {
   publishDomainEvents(events: DomainEvent[]): Promise<void>;
 }
+
+export const DOMAIN_EVENT_PUBLISHER = Symbol('DomainEventPublisher');

@@ -1,5 +1,8 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import type { DomainEventPublisher } from '../../shared/events/domain-event.publisher';
+import {
+  DOMAIN_EVENT_PUBLISHER,
+  type DomainEventPublisher,
+} from '../../shared/events/domain-event.publisher';
 import { CheckoutService } from '../domain/order/checkout.service';
 import { Order } from '../domain/order/order';
 import { OrderId } from '../domain/order/order-id';
@@ -22,6 +25,7 @@ export class OrderService {
     @Inject(ORDER_REPOSITORY)
     private readonly orderRepository: OrderRepository,
     private readonly checkoutService: CheckoutService,
+    @Inject(DOMAIN_EVENT_PUBLISHER)
     private readonly eventPublisher: DomainEventPublisher,
   ) {}
 
