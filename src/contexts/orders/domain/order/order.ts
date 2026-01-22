@@ -1,9 +1,11 @@
+import { DomainEvent } from '../../../shared/events/domain-event';
 import { Money } from '../../../shared/value-objects/money';
 import { CustomerId } from '../shared/customer-id';
 import { CartId } from '../shopping-cart/cart-id';
 import { CartItem } from '../shopping-cart/cart-item';
 import { OrderId } from './order-id';
 import { OrderItem } from './order-item';
+import { OrderPlaced } from './order-placed.event';
 import { OrderStatus } from './order-status';
 import { ShippingAddress } from './shipping-address';
 
@@ -41,6 +43,8 @@ export class Order {
   status: OrderStatus;
   paymentId: string | null;
 
+  private readonly _domainEvents: DomainEvent[] = [];
+
   constructor(params: OrderParams) {
     this.orderId = params.orderId;
     this.cartId = params.cartId;
@@ -71,6 +75,17 @@ export class Order {
       globalDiscount: params.globalDiscount,
       paymentId: null,
     });
+
+    order._domainEvents.push(
+      new OrderPlaced(
+        order.orderId,
+        order.customerId,
+        order.cartId,
+        order.items,
+        order.totalAmount,
+        order.shippingAddress,
+      ),
+    );
 
     return order;
   }
@@ -130,5 +145,14 @@ export class Order {
         new Money(0, this.globalDiscount.currency),
       )
       .subtract(this.globalDiscount);
+  }
+
+  getDomainEvents(): readonly DomainEvent[] {
+    return this._domainEvents;
+  }
+
+  // Called after publishing events to bus
+  clearDomainEvents(): void {
+    this._domainEvents.length = 0;
   }
 }
