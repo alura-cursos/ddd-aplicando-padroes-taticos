@@ -99,10 +99,10 @@ Refatorar o processamento de pagamento para uma arquitetura orientada a eventos:
 
 ## 📁 Acesso ao projeto
 
-Você pode [acessar o código fonte do projeto](https://github.com/vinialbano/ddd-aplicando-padroes-taticos) ou cloná-lo usando:
+Você pode [acessar o código fonte do projeto](https://github.com/alura-cursos/ddd-aplicando-padroes-taticos) ou cloná-lo usando:
 
 ```bash
-git clone https://github.com/vinialbano/ddd-aplicando-padroes-taticos.git
+git clone https://github.com/alura-cursos/ddd-aplicando-padroes-taticos.git
 ```
 
 ## 🛠️ Abrir e rodar o projeto
@@ -146,7 +146,3 @@ $ npm run test:cov
 Você pode executar operações na API através do arquivo `api.http` utilizando a extensão [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) para Visual Studio Code.
 
 Após instalar a extensão, abra o arquivo `api.http` e clique em "Send Request" acima de cada requisição HTTP para executá-la e visualizar a resposta diretamente no editor.
-
-## 📚 Mais informações do curso
-
-Gostou do projeto e quer conhecer mais? Você pode [acessar o curso](https://www.alura.com.br/curso-online-ddd-aplicando-padroes-taticos) que desenvolve o projeto desde o começo!
